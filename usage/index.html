@@ -668,7 +668,8 @@
 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
     <span class="n">pprint</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Planting error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p>Attempting to plant a Tulip</p>
+<p>Attempting to plant a Tulip
+Attempting to plant a Lily</p>
 <h2 id="synchronous-generator-example">Synchronous Generator Example</h2>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">reattempt</span> <span class="kn">import</span> <span class="n">reattempt</span>
 <span class="kn">import</span> <span class="nn">random</span>
@@ -693,8 +694,8 @@
     <span class="n">pprint</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Growing error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>Growing Rose
-Growing Tulip
-Growing Daisy</p>
+Growing Lily
+Growing Rose</p>
 <h2 id="asynchronous-function-example">Asynchronous Function Example</h2>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">reattempt</span> <span class="kn">import</span> <span class="n">reattempt</span>
 <span class="kn">import</span> <span class="nn">asyncio</span>
@@ -722,7 +723,7 @@ Growing Daisy</p>
 
 <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">example_water_flower</span><span class="p">())</span>
 </code></pre></div>
-<p>Watering the Sunflower</p>
+<p>Watering the Daisy</p>
 <h2 id="asynchronous-generator-function-example">Asynchronous Generator Function Example</h2>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">reattempt</span> <span class="kn">import</span> <span class="n">reattempt</span>
 <span class="kn">import</span> <span class="nn">asyncio</span>
@@ -751,9 +752,9 @@ Growing Daisy</p>
 
 <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">example_harvest_flowers</span><span class="p">())</span>
 </code></pre></div>
-<p>Harvesting Tulip
-Harvesting Rose
-Harvesting Daisy</p>
+<p>Harvesting Lily
+Harvesting Tulip
+Harvesting Rose</p>
 <h2 id="complete-example">Complete Example</h2>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>

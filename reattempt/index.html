@@ -951,7 +951,8 @@ def my_function():
 <span class="normal">226</span>
 <span class="normal">227</span>
 <span class="normal">228</span>
-<span class="normal">229</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">reattempt</span><span class="p">(</span>
+<span class="normal">229</span>
+<span class="normal">230</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">reattempt</span><span class="p">(</span>
     <span class="n">func</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">max_retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">CONST_DEFAULT_MAX_RETRIES</span><span class="p">,</span>
     <span class="n">min_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">CONST_DEFAULT_MIN_TIME</span><span class="p">,</span>
@@ -1024,7 +1025,7 @@ def my_function():
                     <span class="n">attempt</span> <span class="o">+=</span> <span class="mi">1</span>
                     <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">wait_time</span><span class="p">)</span>
 
-            <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="n">max_retries</span> <span class="ow">and</span> <span class="n">capture_exception</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="n">max_retries</span><span class="p">:</span>
                 <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;[RETRY] Max retries reached&quot;</span><span class="p">)</span>
                 <span class="k">raise</span> <span class="n">capture_exception</span>
 
@@ -1055,7 +1056,7 @@ def my_function():
                     <span class="n">attempt</span> <span class="o">+=</span> <span class="mi">1</span>
                     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">wait_time</span><span class="p">)</span>
 
-            <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="n">max_retries</span> <span class="ow">and</span> <span class="n">capture_exception</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="n">max_retries</span><span class="p">:</span>
                 <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;[RETRY] Max retries reached&quot;</span><span class="p">)</span>
                 <span class="k">raise</span> <span class="n">capture_exception</span>
 
@@ -1073,6 +1074,7 @@ def my_function():
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">item</span> <span class="o">=</span> <span class="kc">None</span>
                     <span class="k">async</span> <span class="k">with</span> <span class="n">contextlib</span><span class="o">.</span><span class="n">aclosing</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span> <span class="k">as</span> <span class="n">agen</span><span class="p">:</span>
+                        <span class="c1"># https://docs.python.org/3/library/contextlib.html#contextlib.aclosing</span>
                         <span class="k">async</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">agen</span><span class="p">:</span>
                             <span class="k">yield</span> <span class="n">item</span>
                     <span class="k">break</span>
@@ -1096,7 +1098,7 @@ def my_function():
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">should_retry</span> <span class="o">=</span> <span class="kc">False</span>
 
-            <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="n">max_retries</span> <span class="ow">and</span> <span class="n">capture_exception</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="n">max_retries</span><span class="p">:</span>
                 <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;[RETRY] Max retries reached&quot;</span><span class="p">)</span>
                 <span class="k">raise</span> <span class="n">capture_exception</span>
 
@@ -1139,7 +1141,7 @@ def my_function():
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">should_retry</span> <span class="o">=</span> <span class="kc">False</span>
 
-            <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="n">max_retries</span> <span class="ow">and</span> <span class="n">capture_exception</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="n">max_retries</span><span class="p">:</span>
                 <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;[RETRY] Max retries reached&quot;</span><span class="p">)</span>
                 <span class="k">raise</span> <span class="n">capture_exception</span>
 
